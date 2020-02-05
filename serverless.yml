@@ -1,0 +1,36 @@
+service: image-display
+
+custom:
+  bucket: network-class-assignment2
+  url: http://network-class-assignment2.s3-website-us-west-2.amazonaws.com
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-west-2
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource: "arn:aws:s3:::${self:custom.bucket}"
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource: "arn:aws:s3:::${self:custom.bucket}"
+  
+  environment:
+    BUCKET: ${self:custom.bucket}
+    URL: ${self:custom.url}
+
+functions:
+  display:
+    handler: handler.display
+    events:
+      - http:
+          path: display/get
+          method: get
+
+plugins:
+  - serverless-offline

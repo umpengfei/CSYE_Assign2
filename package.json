@@ -1,0 +1,19 @@
+{
+  "name": "image-display",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^5.12.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.610.0",
+    "exif": "^0.6.0",
+    "imagemagick": "^0.1.3"
+  }
+}
